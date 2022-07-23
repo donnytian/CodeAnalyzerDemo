@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>MySimpleAnalyzers</PackageId>
+    <PackageVersion>1.0.4</PackageVersion>
+    <Authors>dong.tian</Authors>
+    <PackageLicenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</PackageLicenseUrl>
+    <PackageProjectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</PackageProjectUrl>
+    <PackageIconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</PackageIconUrl>
+    <RepositoryUrl>http://REPOSITORY_URL_HERE_OR_DELETE_THIS_LINE</RepositoryUrl>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Description>MySimpleAnalyzers</Description>
+    <PackageReleaseNotes>Summary of changes made in this release of the package.</PackageReleaseNotes>
+    <Copyright>Copyright</Copyright>
+    <PackageTags>MySimpleAnalyzers, analyzers</PackageTags>
+    <DevelopmentDependency>true</DevelopmentDependency>
+    <NoPackageAnalysis>true</NoPackageAnalysis>
+
+    <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);_AddAnalyzersToOutput</TargetsForTfmSpecificContentInPackage>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MySimpleAnalyzers.CodeFixes\MySimpleAnalyzers.CodeFixes.csproj" />
+    <ProjectReference Include="..\MySimpleAnalyzers\MySimpleAnalyzers.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="tools\*.ps1" CopyToOutputDirectory="PreserveNewest" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <Target Name="_AddAnalyzersToOutput">
+    <ItemGroup>
+      <TfmSpecificPackageFile Include="$(OutputPath)\MySimpleAnalyzers.dll" PackagePath="analyzers/dotnet/cs" />
+      <TfmSpecificPackageFile Include="$(OutputPath)\MySimpleAnalyzers.CodeFixes.dll" PackagePath="analyzers/dotnet/cs" />
+    </ItemGroup>
+  </Target>
+
+</Project>

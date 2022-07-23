@@ -1,0 +1,7 @@
+[*.cs]
+
+# MA00001: TODO or FIXME has no JIRA ticket
+dotnet_diagnostic.MA00001.severity = warning
+
+# MA00002: Deep loops detected
+dotnet_diagnostic.MA00002.max = 3
