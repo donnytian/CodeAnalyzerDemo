@@ -44,7 +44,6 @@ namespace MySimpleAnalyzers
 
         private async Task<Document> AddTicketNumberAsync(Document document, SyntaxTrivia comment, CancellationToken cancellationToken)
         {
-            // Compute new uppercase name.
             var root = await document.GetSyntaxRootAsync(cancellationToken);
             var token = comment.Token;
             var newComment = SyntaxFactory.Comment(comment + " JIRA-0000");
